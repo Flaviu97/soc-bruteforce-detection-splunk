@@ -2,10 +2,9 @@
 
 ## 📌 Overview
 
-This project demonstrates a simulated Security Operations Center (SOC) investigation.
-A brute-force attack was launched from a Kali Linux machine against a Windows target, with logs forwarded to Splunk for detection and analysis.
+This project simulates a real-world SOC investigation where a brute-force attack is detected, analysed, and attributed using Splunk SIEM.
 
-The objective was to identify malicious authentication activity and analyse attack patterns using SIEM tools.
+The lab demonstrates end-to-end workflow: log ingestion → detection → investigation → response.
 
 ---
 
@@ -24,11 +23,11 @@ The objective was to identify malicious authentication activity and analyse atta
 
 ## 🧠 Skills Demonstrated
 
-- SIEM log analysis (Splunk)
-- Threat detection and pattern recognition
-- Incident investigation and analysis
-- Windows Event Log analysis (Event ID 4625)
-- Network-based attack simulation
+- SIEM log analysis using Splunk (SPL queries, event filtering)
+- Detection of brute-force attacks via Event ID 4625
+- Log correlation across time and source IP
+- Incident investigation and attacker attribution
+- Analysis of Windows Security Event Logs
 
 ---
 
@@ -122,23 +121,38 @@ index=* EventCode=4625
 ### Failed Login Pattern
 ![Failed Logins](screenshots/failed-login.png)
 
-Multiple failed authentication attempts (Event ID 4625) were observed within a short time period, indicating abnormal login behaviour.
+Multiple Event ID 4625 entries were observed within a short time window, indicating repeated failed authentication attempts consistent with brute-force activity.
 
 ### Attacker Identification
 ![Attacker IP](screenshots/attacker-ip.png)
 
-Analysis revealed that the failed login attempts originated from a single source IP address, identifying the attacker system.
+The majority of failed login attempts originated from a single source IP (192.168.56.30), identifying the attacker system within the lab.
 
 ### Brute Force Detection
 ![Detection](screenshots/brute-force-detection.png)
 
-Aggregated log analysis confirmed repeated login attempts against the same account, consistent with brute-force attack behaviour.
+Aggregated log analysis over time revealed a high frequency of login attempts against the same account, confirming brute-force attack behaviour.
+
+---
+
+## 🔎 Detection Logic
+
+The brute-force attack was identified using the following indicators:
+
+- High volume of Event ID 4625 (failed logins)
+- Repeated attempts against the same account
+- Single source IP generating multiple failures
+- Short time intervals between attempts
+
+These indicators were correlated using Splunk SPL queries to confirm malicious behaviour.
 
 ---
 
 ## 🛡️ Impact
 
-If successful, the attacker could gain unauthorised access to the system, potentially leading to privilege escalation or lateral movement within the network.
+If successful, the attack could result in unauthorised access to the system, potentially enabling privilege escalation or lateral movement within the network.
+
+This type of activity is commonly associated with credential-based attacks in enterprise environments.
 
 ---
 
@@ -160,5 +174,11 @@ This project demonstrates the ability to:
 * Detect brute-force attack patterns
 * Identify attacker sources using log correlation
 * Use Splunk SIEM for security monitoring and investigation
+
+---
+
+## 📌 Summary
+
+This project demonstrates the ability to simulate, detect, and analyse a brute-force attack using SIEM tools in a controlled lab environment, following a structured SOC investigation workflow.
 
 ---
