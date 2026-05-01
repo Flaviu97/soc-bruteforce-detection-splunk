@@ -9,6 +9,19 @@ The objective was to identify malicious authentication activity and analyse atta
 
 ---
 
+## 🧭 Investigation Process
+
+1. Identified abnormal authentication activity using Event ID 4625  
+2. Filtered logs to isolate failed login attempts  
+3. Analysed key fields:
+   - Account_Name  
+   - Source_Network_Address  
+4. Correlated repeated login attempts over time  
+5. Identified attacker IP (192.168.56.30)  
+6. Confirmed brute-force behaviour based on frequency and pattern
+
+---
+
 ## 🧠 Skills Demonstrated
 
 - SIEM log analysis (Splunk)
@@ -28,6 +41,14 @@ The environment consisted of three virtual machines:
 * **SIEM:** Splunk Enterprise (192.168.56.10)
 
 All systems were configured within an isolated virtual network.
+
+---
+
+## 🎯 MITRE ATT&CK Mapping
+
+- Technique: T1110 – Brute Force  
+- Sub-technique: Password Guessing  
+- Data Source: Windows Security Event Logs (Event ID 4625)
 
 ---
 
