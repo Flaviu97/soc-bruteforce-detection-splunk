@@ -99,7 +99,7 @@ index=* EventCode=4625
 ![Lab Setup](screenshots/lab-setup.png)
 
 ### Failed Login Pattern
-![Failed Logins](screenshots/failed-logins.png)
+![Failed Logins](screenshots/failed-login.png)
 
 Multiple failed authentication attempts (Event ID 4625) were observed within a short time period, indicating abnormal login behaviour.
 
